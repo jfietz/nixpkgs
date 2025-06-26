@@ -1235,10 +1235,6 @@ with pkgs;
     stdenv = clangStdenv;
   };
 
-  breitbandmessung = callPackage ../applications/networking/breitbandmessung {
-    electron = electron_34;
-  };
-
   ### APPLICATIONS/VERSION-MANAGEMENT
 
   git = callPackage ../applications/version-management/git {
@@ -3020,8 +3016,6 @@ with pkgs;
   uniscribe = callPackage ../tools/text/uniscribe { };
 
   gandi-cli = python3Packages.callPackage ../tools/networking/gandi-cli { };
-
-  gaphor = python3Packages.callPackage ../tools/misc/gaphor { };
 
   inherit (callPackages ../tools/filesystems/garage { })
     garage
@@ -11092,10 +11086,6 @@ with pkgs;
   linux-rt = linuxPackages-rt.kernel;
   linux-rt_latest = linuxPackages-rt_latest.kernel;
 
-  # Amateur Radio kernel
-  linuxPackages_ham = linuxKernel.packages.linux_ham;
-  linux_ham = linuxPackages_ham.kernel;
-
   # hardened kernels
   linuxPackages_hardened = linuxKernel.packages.linux_hardened;
   linux_hardened = linuxPackages_hardened.kernel;
@@ -12320,6 +12310,18 @@ with pkgs;
           buildMozillaMach
           ;
       };
+  firefox-esr-140-unwrapped =
+    import ../applications/networking/browsers/firefox/packages/firefox-esr-140.nix
+      {
+        inherit
+          stdenv
+          lib
+          callPackage
+          fetchurl
+          nixosTests
+          buildMozillaMach
+          ;
+      };
   firefox-esr-unwrapped = firefox-esr-128-unwrapped;
 
   firefox = wrapFirefox firefox-unwrapped { };
@@ -12329,6 +12331,11 @@ with pkgs;
   firefox-mobile = callPackage ../applications/networking/browsers/firefox/mobile-config.nix { };
 
   firefox-esr-128 = wrapFirefox firefox-esr-128-unwrapped {
+    nameSuffix = "-esr";
+    wmClass = "firefox-esr";
+    icon = "firefox-esr";
+  };
+  firefox-esr-140 = wrapFirefox firefox-esr-140-unwrapped {
     nameSuffix = "-esr";
     wmClass = "firefox-esr";
     icon = "firefox-esr";

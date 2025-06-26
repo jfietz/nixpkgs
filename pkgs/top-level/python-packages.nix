@@ -7584,6 +7584,8 @@ self: super: with self; {
 
   keyboard = callPackage ../development/python-modules/keyboard { };
 
+  keymap-drawer = callPackage ../development/python-modules/keymap-drawer { };
+
   keyring = callPackage ../development/python-modules/keyring { };
 
   keyring-pass = callPackage ../development/python-modules/keyring-pass { };
@@ -14592,6 +14594,8 @@ self: super: with self; {
 
   python-songpal = callPackage ../development/python-modules/python-songpal { };
 
+  python-speech-features = callPackage ../development/python-modules/python-speech-features { };
+
   python-sql = callPackage ../development/python-modules/python-sql { };
 
   python-status = callPackage ../development/python-modules/python-status { };
@@ -19740,6 +19744,8 @@ self: super: with self; {
   zadnegoale = callPackage ../development/python-modules/zadnegoale { };
 
   zamg = callPackage ../development/python-modules/zamg { };
+
+  zammad-py = callPackage ../development/python-modules/zammad-py { };
 
   zarr = callPackage ../development/python-modules/zarr { };
 
