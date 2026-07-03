@@ -57,6 +57,10 @@ let
           "--enable-secretstore"
         ];
       });
+
+  gst-plugins-good' = gst_all_1.gst-plugins-good.override {
+    gtkSupport = true;
+  };
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "orca-slicer";
@@ -108,7 +112,7 @@ stdenv.mkDerivation (finalAttrs: {
     gst_all_1.gstreamer
     gst_all_1.gst-plugins-base
     gst_all_1.gst-plugins-bad
-    gst_all_1.gst-plugins-good
+    gst-plugins-good'
     gtk3
     hicolor-icon-theme
     libsecret
